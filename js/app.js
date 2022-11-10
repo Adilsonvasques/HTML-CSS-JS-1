@@ -31,7 +31,8 @@
       const removeIcon = document.createElement("span");
       const quantity = document.createElement("span");
       const addIcon = document.createElement("span");
-
+      
+      //adiciona classes ao spans
       closeIcon.classList.add("close-icon");
       removeIcon.classList.add("remove-icon");
       quantity.classList.add("quantity");
@@ -43,32 +44,32 @@
       image.src = "../img/produtos/page3/café-espresso-ameno.jpg";
       productImage.appendChild(image);
       
-      //
+      //quando criado eles irão receber o valor destacado
       closeIcon.innerText = "close";
       removeIcon.innerText = "remove";
       addIcon.innerText = "add";
       quantity.innerText = item.quantity;
       
+      //começa a modelar, aqui definimos a ordem das divs spans oq vai dentro de onde começa a modelar o codigo.
       producRemove.appendChild(closeIcon);
-
-      //cart__product-details
       productDetails.appendChild(productTitle);
       productDetails.appendChild(productPrice);
       productDetails.appendChild(removeIcon);
       productDetails.appendChild(quantity);
       productDetails.appendChild(addIcon);
 
+      //quando criado eles irão receber o valor destacado
       productTitle.innerText = "Kit capsula Café";
       productPrice.innerText = "R$ 50,00";
       
+      //começa a modelar, aqui definimos a ordem das divs spans oq vai dentro de onde começa a modelar o codigo.
       cartProduct.appendChild(producRemove);
       cartProduct.appendChild(productImage);
       cartProduct.appendChild(productDetails);
-
       cartProducts.appendChild(cartProduct);
       
       
-      
+    //constante para remover o iten criado com as funções acima 
     const removeItem = (e) => {
         const element = e.target;
         const parentProduct = element.closest(".cart__product");
@@ -83,7 +84,8 @@
         updateTotals(cartItems, item, "remove");
         toggleItems(cartItems);
       };
-  
+      
+      //criação de evento e algumas funções pra melhorar o funcionamento na hr de remover o item criado
       closeIcon.addEventListener("click", removeItem);
   
       removeIcon.addEventListener("click", (e) => {
@@ -121,7 +123,7 @@
     const toggleItems = (cartItems) => {
     const emptyCartElements = document.querySelectorAll("[data-empty-cart");
     const notEmptyCartElements = document.querySelectorAll("[data-not-empty-cart");
-        //Caso o carrinho esteja vazio mostrar os elementos
+    //Caso o carrinho esteja vazio mostrar os elementos
     if (cartItems.length === 0){
         
         emptyCartElements.forEach((element) => {
@@ -147,10 +149,12 @@
         cart.style.display = "block";
       };
     
+      //constante para transforma um numero em string ou string em numero n lembro kkk
       const extractMoneyValue = (string) => {
         return Number(string.split("$")[1]);
       };
     
+      
       const updateTotals = (cartItems, item, action = "add") => {
         const totalItems = document.querySelector(".cart__total-value");
         const subTotal = document.querySelector("[data-subtotal]");
